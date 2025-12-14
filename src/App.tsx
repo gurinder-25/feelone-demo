@@ -390,7 +390,7 @@ function App() {
         </div>
 
         {showProceed && (
-          <div className="relative z-10 px-6 pb-8 fade-in-up">
+          <div className="relative z-10 px-6 pb-20 fade-in-up">
             <button
               onClick={handleProceed}
               className="w-full glass-morphism rounded-[2rem] px-8 py-6 font-medium text-lg tracking-wide hover:bg-white/[0.06] transition-all duration-500 active:scale-[0.98] group relative overflow-hidden"
