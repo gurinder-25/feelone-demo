@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowLeft, ArrowRight, Heart } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Heart, AlertCircle, X } from 'lucide-react';
+
+// Configuration: Set to true to show demo notices
+const SHOW_DEMO_NOTICES = true;
 
 interface EmotionAnalysis {
   emotionLabel: string;
@@ -65,10 +68,10 @@ const generateMockAnalysis = (): EmotionAnalysis => {
   return randomEmotion;
 };
 
-type ViewState = 'input' | 'analyzing' | 'results';
+type ViewState = 'devNotice' | 'input' | 'analyzing' | 'results';
 
 function App() {
-  const [viewState, setViewState] = useState<ViewState>('input');
+  const [viewState, setViewState] = useState<ViewState>(SHOW_DEMO_NOTICES ? 'devNotice' : 'input');
   const [displayedQuestion, setDisplayedQuestion] = useState('');
   const [showInput, setShowInput] = useState(false);
   const [userInput, setUserInput] = useState('');
@@ -76,6 +79,7 @@ function App() {
   const [analysis, setAnalysis] = useState<EmotionAnalysis | null>(null);
   const [analyzingDots, setAnalyzingDots] = useState('');
   const [sessionCount, setSessionCount] = useState(0);
+  const [showDemoNotice, setShowDemoNotice] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const questionTexts = [
@@ -140,6 +144,13 @@ function App() {
         const mockAnalysis = generateMockAnalysis();
         setAnalysis(mockAnalysis);
         setViewState('results');
+
+        // Show demo notice after results are displayed (if enabled)
+        if (SHOW_DEMO_NOTICES) {
+          setTimeout(() => {
+            setShowDemoNotice(true);
+          }, 500);
+        }
       }, 3000);
 
       return () => {
@@ -155,11 +166,16 @@ function App() {
     }
   };
 
+  const handleProceedFromDevNotice = () => {
+    setViewState('input');
+  };
+
   const handleStartOver = () => {
     setViewState('input');
     setUserInput('');
     setAnalysis(null);
     setSessionCount(prev => prev + 1);
+    setShowDemoNotice(false);
   };
 
   const handleClose = () => {
@@ -167,7 +183,101 @@ function App() {
     setUserInput('');
     setAnalysis(null);
     setSessionCount(0);
+    setShowDemoNotice(false);
   };
+
+  // Development Notice View
+  if (viewState === 'devNotice') {
+    return (
+      <div className="min-h-screen bg-black text-white flex flex-col max-w-md mx-auto relative overflow-hidden">
+        <style>{`
+          @keyframes fade-in-up {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          @keyframes glow-pulse {
+            0%, 100% {
+              box-shadow: 0 0 40px rgba(255, 255, 255, 0.05), 0 0 80px rgba(255, 255, 255, 0.02);
+            }
+            50% {
+              box-shadow: 0 0 50px rgba(255, 255, 255, 0.08), 0 0 100px rgba(255, 255, 255, 0.04);
+            }
+          }
+          .glow-orb {
+            animation: glow-pulse 4s ease-in-out infinite;
+          }
+          .glass-morphism {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+          }
+          @keyframes shimmer {
+            0% {
+              background-position: -200% 0;
+            }
+            100% {
+              background-position: 200% 0;
+            }
+          }
+          .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+          }
+          .fade-in-up {
+            animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          }
+        `}</style>
+
+        {/* Ambient Orbs */}
+        <div className="absolute top-20 right-10 w-64 h-64 bg-white rounded-full opacity-[0.02] blur-3xl glow-orb" />
+        <div className="absolute bottom-40 left-10 w-80 h-80 bg-white rounded-full opacity-[0.015] blur-3xl glow-orb" style={{ animationDelay: '2s' }} />
+
+        {/* Header */}
+        <div className="relative z-10 pt-16 pb-8">
+          <div className="px-6 flex items-center gap-4">
+            <h1 className="text-xl font-medium">FeelOne</h1>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pb-24">
+          <div className="fade-in-up text-center max-w-sm">
+            <div className="mb-6 flex justify-center">
+              <div className="p-4 rounded-full glass-morphism">
+                <AlertCircle className="w-12 h-12 text-white" />
+              </div>
+            </div>
+
+            <h2 className="text-2xl font-light mb-4 leading-tight">
+              This feature is still in development
+            </h2>
+
+            <p className="text-zinc-400 text-base mb-8 leading-relaxed">
+              Want to see a mock demo?
+            </p>
+
+            <button
+              onClick={handleProceedFromDevNotice}
+              className="w-full glass-morphism rounded-[2rem] px-8 py-6 font-medium text-lg tracking-wide hover:bg-white/[0.06] transition-all duration-500 active:scale-[0.98] group relative overflow-hidden"
+            >
+              <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="relative flex items-center justify-between">
+                <span>Proceed</span>
+                <ArrowRight size={20} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (viewState === 'input') {
     return (
@@ -434,7 +544,88 @@ function App() {
             </div>
           </div>
 
+          {/* Buttons */}
+          <div className="space-y-3 mt-12 fade-in-up" style={{ animationDelay: '0.3s' }}>
+            <button
+              onClick={handleStartOver}
+              className="w-full glass-morphism rounded-[2rem] px-8 py-6 font-medium text-lg tracking-wide hover:bg-white/[0.06] transition-all duration-500 active:scale-[0.98] group relative overflow-hidden"
+            >
+              <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="relative flex items-center justify-between">
+                <span>Explore another feeling</span>
+                <ArrowRight size={20} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
+              </div>
+            </button>
+
+            <button
+              onClick={handleClose}
+              className="w-full glass-morphism rounded-[2rem] px-8 py-6 font-medium text-lg tracking-wide text-zinc-500 hover:text-white hover:bg-white/[0.03] transition-all duration-500 active:scale-[0.98] group relative overflow-hidden"
+            >
+              <div className="relative flex items-center justify-between">
+                <span>Close</span>
+                <ArrowRight size={20} className="opacity-40 group-hover:opacity-60 group-hover:translate-x-1 transition-all duration-300" />
+              </div>
+            </button>
+          </div>
+
         </div>
+
+        {/* Demo Notice Bottom Sheet */}
+        {showDemoNotice && (
+          <>
+            <div
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+              onClick={() => setShowDemoNotice(false)}
+            />
+            <div className="fixed inset-x-0 bottom-0 z-50" style={{ animation: 'slide-up 0.3s ease-out' }}>
+              <div className="bg-zinc-900 rounded-t-3xl border-t border-zinc-800 max-w-md mx-auto">
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-semibold">Demo Notice</h3>
+                    <button
+                      onClick={() => setShowDemoNotice(false)}
+                      className="w-8 h-8 rounded-full bg-zinc-800/50 flex items-center justify-center hover:bg-zinc-800 transition-all"
+                    >
+                      <X size={18} />
+                    </button>
+                  </div>
+
+                  <div className="mb-6">
+                    <div className="flex items-start gap-3 mb-4">
+                      <AlertCircle className="w-5 h-5 text-zinc-400 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-zinc-300 leading-relaxed mb-3">
+                          This is <span className="font-semibold text-white">mock data for demo purposes</span> only.
+                        </p>
+                        <p className="text-zinc-400 text-sm leading-relaxed">
+                          The actual feature will use AI to provide personalized emotional insights based on your unique feelings and experiences.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => setShowDemoNotice(false)}
+                    className="w-full bg-white text-black rounded-2xl py-4 font-semibold hover:bg-zinc-100 transition-all"
+                  >
+                    Got it
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <style>{`
+              @keyframes slide-up {
+                from {
+                  transform: translateY(100%);
+                }
+                to {
+                  transform: translateY(0);
+                }
+              }
+            `}</style>
+          </>
+        )}
 
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       </div>
