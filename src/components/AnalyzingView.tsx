@@ -25,7 +25,7 @@ export const AnalyzingView = ({ onAnalysisComplete }: AnalyzingViewProps) => {
   }, [onAnalysisComplete]);
 
   return (
-    <div className="min-h-screen bg-gray-100 text-black flex flex-col items-center justify-center max-w-md mx-auto relative overflow-hidden">
+    <div className="min-h-screen bg-gray-200 text-black flex flex-col items-center justify-center max-w-md mx-auto relative overflow-hidden">
       <style>{`
         @keyframes glow-pulse {
           0%, 100% {

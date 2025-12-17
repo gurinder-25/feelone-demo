@@ -6,7 +6,7 @@ interface DevNoticeViewProps {
 
 export const DevNoticeView = ({ onProceed }: DevNoticeViewProps) => {
   return (
-    <div className="min-h-screen bg-gray-100 text-black flex flex-col max-w-md mx-auto relative overflow-hidden">
+    <div className="min-h-screen bg-gray-200 text-black flex flex-col max-w-md mx-auto relative overflow-hidden">
       <style>{`
         @keyframes fade-in-up {
           from {
