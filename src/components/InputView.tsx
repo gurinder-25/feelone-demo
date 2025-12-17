@@ -59,7 +59,7 @@ export const InputView = ({ questionText, onProceed }: InputViewProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col max-w-md mx-auto relative overflow-hidden">
+    <div className="min-h-screen bg-gray-50 text-black flex flex-col max-w-md mx-auto relative overflow-hidden">
       <style>{`
         @keyframes fade-in-up {
           from {
@@ -73,10 +73,10 @@ export const InputView = ({ questionText, onProceed }: InputViewProps) => {
         }
         @keyframes glow-pulse {
           0%, 100% {
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.05), 0 0 80px rgba(255, 255, 255, 0.02);
+            box-shadow: 0 0 40px rgba(147, 197, 253, 0.3), 0 0 80px rgba(147, 197, 253, 0.15);
           }
           50% {
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.08), 0 0 100px rgba(255, 255, 255, 0.04);
+            box-shadow: 0 0 50px rgba(147, 197, 253, 0.4), 0 0 100px rgba(147, 197, 253, 0.2);
           }
         }
         @keyframes blink {
@@ -88,7 +88,7 @@ export const InputView = ({ questionText, onProceed }: InputViewProps) => {
           display: inline-block;
           width: 3px;
           height: 1em;
-          background: white;
+          background: black;
           margin-left: 8px;
           animation: blink 1s infinite;
         }
@@ -96,9 +96,9 @@ export const InputView = ({ questionText, onProceed }: InputViewProps) => {
           animation: glow-pulse 4s ease-in-out infinite;
         }
         .glass-morphism {
-          background: rgba(255, 255, 255, 0.03);
+          background: rgba(147, 197, 253, 0.1);
           backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(147, 197, 253, 0.3);
         }
         @keyframes shimmer {
           0% {
@@ -109,7 +109,7 @@ export const InputView = ({ questionText, onProceed }: InputViewProps) => {
           }
         }
         .shimmer {
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+          background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.3), transparent);
           background-size: 200% 100%;
           animation: shimmer 3s infinite;
         }
@@ -117,7 +117,7 @@ export const InputView = ({ questionText, onProceed }: InputViewProps) => {
           animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         textarea {
-          caret-color: white;
+          caret-color: black;
         }
         textarea::placeholder {
           opacity: 0;
@@ -131,11 +131,11 @@ export const InputView = ({ questionText, onProceed }: InputViewProps) => {
         }
       `}</style>
 
-      <div className="absolute top-20 right-10 w-64 h-64 bg-white rounded-full opacity-[0.02] blur-3xl glow-orb" />
-      <div className="absolute bottom-40 left-10 w-80 h-80 bg-white rounded-full opacity-[0.015] blur-3xl glow-orb" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-20 right-10 w-64 h-64 bg-blue-300 rounded-full opacity-[0.15] blur-3xl glow-orb" />
+      <div className="absolute bottom-40 left-10 w-80 h-80 bg-blue-300 rounded-full opacity-[0.1] blur-3xl glow-orb" style={{ animationDelay: '2s' }} />
 
-      <div className="absolute inset-0 opacity-[0.015]" style={{
-        backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)',
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(147, 197, 253, 0.3) 1px, transparent 0)',
         backgroundSize: '40px 40px'
       }} />
 
@@ -158,8 +158,8 @@ export const InputView = ({ questionText, onProceed }: InputViewProps) => {
               ref={inputRef}
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
-              className="w-full bg-transparent text-lg font-light leading-relaxed focus:outline-none resize-none text-white overflow-hidden"
-              style={{ caretColor: 'white', height: 'auto' }}
+              className="w-full bg-transparent text-lg font-light leading-relaxed focus:outline-none resize-none text-black overflow-hidden"
+              style={{ caretColor: 'black', height: 'auto' }}
               rows={1}
               autoFocus
             />
@@ -171,7 +171,7 @@ export const InputView = ({ questionText, onProceed }: InputViewProps) => {
         <div className="relative z-10 px-6 pb-20 fade-in-up">
           <button
             onClick={handleProceed}
-            className="w-full glass-morphism rounded-[2rem] px-8 py-6 font-medium text-lg tracking-wide hover:bg-white/[0.06] transition-all duration-500 active:scale-[0.98] group relative overflow-hidden"
+            className="w-full glass-morphism rounded-[2rem] px-8 py-6 font-medium text-lg tracking-wide text-black hover:bg-blue-100 transition-all duration-500 active:scale-[0.98] group relative overflow-hidden"
           >
             <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="relative flex items-center justify-between">
@@ -182,7 +182,7 @@ export const InputView = ({ questionText, onProceed }: InputViewProps) => {
         </div>
       )}
 
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-300/30 to-transparent" />
     </div>
   );
 };

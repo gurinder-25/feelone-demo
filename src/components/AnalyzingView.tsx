@@ -25,14 +25,14 @@ export const AnalyzingView = ({ onAnalysisComplete }: AnalyzingViewProps) => {
   }, [onAnalysisComplete]);
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center max-w-md mx-auto relative overflow-hidden">
+    <div className="min-h-screen bg-gray-50 text-black flex flex-col items-center justify-center max-w-md mx-auto relative overflow-hidden">
       <style>{`
         @keyframes glow-pulse {
           0%, 100% {
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.05), 0 0 80px rgba(255, 255, 255, 0.02);
+            box-shadow: 0 0 40px rgba(147, 197, 253, 0.3), 0 0 80px rgba(147, 197, 253, 0.15);
           }
           50% {
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.08), 0 0 100px rgba(255, 255, 255, 0.04);
+            box-shadow: 0 0 50px rgba(147, 197, 253, 0.4), 0 0 100px rgba(147, 197, 253, 0.2);
           }
         }
         .glow-orb {
@@ -40,8 +40,8 @@ export const AnalyzingView = ({ onAnalysisComplete }: AnalyzingViewProps) => {
         }
       `}</style>
 
-      <div className="absolute top-20 right-10 w-64 h-64 bg-white rounded-full opacity-[0.02] blur-3xl glow-orb" />
-      <div className="absolute bottom-40 left-10 w-80 h-80 bg-white rounded-full opacity-[0.015] blur-3xl glow-orb" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-20 right-10 w-64 h-64 bg-blue-300 rounded-full opacity-[0.15] blur-3xl glow-orb" />
+      <div className="absolute bottom-40 left-10 w-80 h-80 bg-blue-300 rounded-full opacity-[0.1] blur-3xl glow-orb" style={{ animationDelay: '2s' }} />
 
       <div className="text-center">
         <h2 className="text-[2.75rem] leading-[1.1] font-extralight tracking-tight">
