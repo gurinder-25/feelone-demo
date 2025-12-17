@@ -57,9 +57,9 @@ export const DevNoticeView = ({ onProceed }: DevNoticeViewProps) => {
       <div className="absolute bottom-40 left-10 w-80 h-80 bg-blue-300 rounded-full opacity-[0.1] blur-3xl glow-orb" style={{ animationDelay: '2s' }} />
 
       {/* Header */}
-      <div className="relative z-10 pt-16 pb-8">
+      <div className="relative z-10 pt-6 pb-6">
         <div className="px-6 flex items-center gap-4">
-          <h1 className="text-xl font-medium">FeelOne</h1>
+          <h1 className="text-3xl font-medium">FeelOne</h1>
         </div>
       </div>
 

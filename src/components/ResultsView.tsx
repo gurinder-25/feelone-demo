@@ -83,7 +83,7 @@ export const ResultsView = ({ analysis, onStartOver, onClose }: ResultsViewProps
         backgroundSize: '40px 40px'
       }} />
 
-      <div className="relative z-10 pt-16 pb-8">
+      <div className="relative z-10 pt-6 pb-6">
         <div className="px-6 flex items-center gap-4">
           <button
             onClick={onClose}
@@ -95,8 +95,8 @@ export const ResultsView = ({ analysis, onStartOver, onClose }: ResultsViewProps
         </div>
       </div>
 
-      <div className="relative z-10 overflow-y-auto overflow-x-hidden px-6 pb-8" style={{ maxHeight: 'calc(100vh - 200px)' }}>
-        <div className="mb-12 fade-in-up">
+      <div className="relative z-10 overflow-y-auto overflow-x-hidden px-6 pb-8" style={{ maxHeight: 'calc(100vh - 100px)' }}>
+        <div className="mb-8 fade-in-up">
           <h3 className="text-sm uppercase tracking-wider text-gray-500 mb-4 font-medium">
             Emotion Identified
           </h3>
@@ -108,7 +108,7 @@ export const ResultsView = ({ analysis, onStartOver, onClose }: ResultsViewProps
           </p>
         </div>
 
-        <div className="mb-8 fade-in-up" style={{ animationDelay: '0.2s' }}>
+        <div className="mb-6 fade-in-up" style={{ animationDelay: '0.2s' }}>
           <h3 className="text-sm uppercase tracking-wider text-gray-500 mb-4 font-medium">
             Steps to Feel Better
           </h3>
@@ -127,7 +127,7 @@ export const ResultsView = ({ analysis, onStartOver, onClose }: ResultsViewProps
         </div>
 
         {/* Buttons */}
-        <div className="space-y-3 mt-12 fade-in-up" style={{ animationDelay: '0.3s' }}>
+        <div className="space-y-3 mt-8 fade-in-up" style={{ animationDelay: '0.3s' }}>
           <button
             onClick={onStartOver}
             className="w-full glass-morphism rounded-[2rem] px-8 py-6 font-medium text-lg tracking-wide text-black hover:bg-blue-100 transition-all duration-500 active:scale-[0.98] group relative overflow-hidden"

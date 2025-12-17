@@ -139,9 +139,9 @@ export const InputView = ({ questionText, onProceed }: InputViewProps) => {
         backgroundSize: '40px 40px'
       }} />
 
-      <div className="relative z-10 pt-16 pb-8">
+      <div className="relative z-10 pt-6 pb-6">
         <div className="px-6 flex items-center gap-4">
-          <h1 className="text-xl font-medium">FeelOne</h1>
+          <h1 className="text-3xl font-medium">FeelOne</h1>
         </div>
       </div>
 
