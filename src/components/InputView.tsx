@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, User } from 'lucide-react';
 
 interface InputViewProps {
   questionText: string;
   onProceed: (input: string) => void;
+  onShowProfile: () => void;
 }
 
-export const InputView = ({ questionText, onProceed }: InputViewProps) => {
+export const InputView = ({ questionText, onProceed, onShowProfile }: InputViewProps) => {
   const [displayedQuestion, setDisplayedQuestion] = useState('');
   const [showInput, setShowInput] = useState(false);
   const [userInput, setUserInput] = useState('');
@@ -140,8 +141,14 @@ export const InputView = ({ questionText, onProceed }: InputViewProps) => {
       }} />
 
       <div className="relative z-10 pt-6 pb-6">
-        <div className="px-6 flex items-center gap-4">
+        <div className="px-6 flex items-center justify-between">
           <h1 className="text-3xl font-medium">FeelOne</h1>
+          <button
+            onClick={onShowProfile}
+            className="w-10 h-10 rounded-full bg-blue-300/30 hover:bg-blue-300/50 flex items-center justify-center transition-all duration-300 active:scale-95"
+          >
+            <User size={20} className="text-black" />
+          </button>
         </div>
       </div>
 
