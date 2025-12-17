@@ -150,7 +150,7 @@ export const Auth = ({ onLogin }: AuthProps) => {
 
           <button
             onClick={handleSubmit}
-            className="w-full bg-blue-400 text-black rounded-[2rem] px-6 py-5 font-semibold tracking-wide hover:bg-blue-500 transition-all duration-500 active:scale-[0.98] group relative overflow-hidden"
+            className="w-full bg-blue-300 text-black rounded-[2rem] px-6 py-5 font-semibold tracking-wide hover:bg-blue-300 transition-all duration-500 active:scale-[0.98] group relative overflow-hidden"
           >
             <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="relative flex items-center justify-center gap-2">
