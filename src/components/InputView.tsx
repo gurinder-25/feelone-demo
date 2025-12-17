@@ -59,7 +59,7 @@ export const InputView = ({ questionText, onProceed }: InputViewProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-black flex flex-col max-w-md mx-auto relative overflow-hidden">
+    <div className="min-h-screen bg-gray-100 text-black flex flex-col max-w-md mx-auto relative overflow-hidden">
       <style>{`
         @keyframes fade-in-up {
           from {

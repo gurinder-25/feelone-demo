@@ -22,7 +22,7 @@ export const ResultsView = ({ analysis, onStartOver, onClose }: ResultsViewProps
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-black max-w-md mx-auto relative overflow-hidden">
+    <div className="min-h-screen bg-gray-100 text-black max-w-md mx-auto relative overflow-hidden">
       <style>{`
         @keyframes fade-in-up {
           from {
