@@ -16,7 +16,7 @@ export const AnalyzingView = ({ onAnalysisComplete }: AnalyzingViewProps) => {
 
     const analysisTimeout = setTimeout(() => {
       onAnalysisComplete();
-    }, 3000);
+    }, 5000);
 
     return () => {
       clearInterval(dotsInterval);
@@ -27,24 +27,44 @@ export const AnalyzingView = ({ onAnalysisComplete }: AnalyzingViewProps) => {
   return (
     <div className="min-h-screen bg-gray-200 text-black flex flex-col items-center justify-center max-w-md mx-auto relative overflow-hidden">
       <style>{`
-        @keyframes glow-pulse {
-          0%, 100% {
-            box-shadow: 0 0 40px rgba(147, 197, 253, 0.3), 0 0 80px rgba(147, 197, 253, 0.15);
+        @keyframes premium-shimmer {
+          0% {
+            transform: translateX(-120%) translateY(-120%) rotate(45deg);
+            opacity: 0;
+          }
+          10% {
+            opacity: 0.18;
           }
           50% {
-            box-shadow: 0 0 50px rgba(147, 197, 253, 0.4), 0 0 100px rgba(147, 197, 253, 0.2);
+            opacity: 0.25;
+          }
+          90% {
+            opacity: 0.15;
+          }
+          100% {
+            transform: translateX(120%) translateY(120%) rotate(45deg);
+            opacity: 0;
           }
         }
-        .glow-orb {
-          animation: glow-pulse 4s ease-in-out infinite;
+        .shimmer-main {
+          animation: premium-shimmer 4.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+          filter: blur(35px);
         }
       `}</style>
 
-      <div className="absolute top-20 right-10 w-64 h-64 bg-blue-300 rounded-full opacity-[0.15] blur-3xl glow-orb" />
-      <div className="absolute bottom-40 left-10 w-80 h-80 bg-blue-300 rounded-full opacity-[0.1] blur-3xl glow-orb" style={{ animationDelay: '2s' }} />
+      {/* Premium shimmer sweep - wider, slower, more gentle */}
+      <div
+        className="absolute inset-0 shimmer-main"
+        style={{
+          background: 'linear-gradient(90deg, transparent 0%, rgba(147, 197, 253, 0.25) 35%, rgba(96, 165, 250, 0.35) 50%, rgba(147, 197, 253, 0.25) 65%, transparent 100%)',
+          width: '280%',
+          height: '280%'
+        }}
+      />
 
-      <div className="text-center">
-        <h2 className="text-[2.75rem] leading-[1.1] font-extralight tracking-tight">
+      {/* Centered Analysing text */}
+      <div className="relative z-10 text-center">
+        <h2 className="text-[2.5rem] leading-[1.1] font-extralight tracking-tight text-black">
           Analysing{analyzingDots}
         </h2>
       </div>
