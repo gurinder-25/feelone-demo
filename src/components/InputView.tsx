@@ -154,7 +154,7 @@ export const InputView = ({ questionText, onProceed, onShowProfile }: InputViewP
 
       <div className="relative z-10 flex-1 px-6 pt-8 pb-4 flex flex-col overflow-y-auto overflow-x-hidden">
         <div className="mb-8">
-          <h2 className={`text-[2rem] leading-[1.2] font-extralight tracking-tight ${!showInput ? 'cursor-blink' : ''}`}>
+          <h2 className={`text-[2rem] leading-[1.2] font-light tracking-tight ${!showInput ? 'cursor-blink' : ''}`}>
             {displayedQuestion}
           </h2>
         </div>
