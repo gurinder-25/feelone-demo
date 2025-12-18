@@ -142,7 +142,7 @@ export const InputView = ({ questionText, onProceed, onShowProfile }: InputViewP
 
       <div className="relative z-10 pt-6 pb-6">
         <div className="px-6 flex items-center justify-between">
-          <h1 className="text-5xl font-medium" style={{ transform: 'scaleY(1.15)' }}>FeelOne</h1>
+          <h1 className="text-3xl font-medium">FeelOne</h1>
           <button
             onClick={onShowProfile}
             className="w-10 h-10 rounded-full bg-blue-300/30 hover:bg-blue-300/50 flex items-center justify-center transition-all duration-300 active:scale-95"
